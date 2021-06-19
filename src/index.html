@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>CPU Monitor v03</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- <h1>💖 Hello World!</h1>
+    <p>Welcome to your Electron application.</p> -->
+
+    <div class="box">
+        <span class="label">CPU (%)</span>
+        <span id="cpu">-</span>
+    </div>
+    <div class="box">
+        <span class="label">Free Mem (%)</span>
+        <span id="mem">-</span>
+    </div>
+    <div class="box">
+        <span class="label">Total Mem (GB)</span>
+        <span id="total-mem">-</span>
+    </div>
+
+    <script>
+        const electron = require('electron');
+        const ipcRenderer = electron.ipcRenderer;
+        // const { ipcRenderer } = require('electron')
+
+        // ipcRenderer.on("cpu", (event, data) => {
+        //     //console.log(`Received ${data} from main process`);
+        //     // ipcRenderer.send("cpu", data);
+        //     console.log("data: ", data);
+        //     document.getElementById('cpu').innerHTML = data;
+        // });
+
+        // ipcRenderer.on("mem", (data) => {
+        //     //console.log(`Received ${data} from main process`);
+        //     document.getElementById('mem').innerHTML = data;
+        // });
+
+        // ipcRenderer.on("total-mem", (data) => {
+        //     //console.log(`Received ${data} from main process`);
+        //     document.getElementById('total-mem').innerHTML = data;
+        // });
+
+        // window.api.receive("cpu", (data) => {
+        //     //console.log(`Received ${data} from main process`);
+        //     window.api.send("cpu", data);
+        //     document.getElementById('cpu').innerHTML = data.toFixed(2);
+        // });
+
+        // window.api.receive("mem", (data) => {
+        //     //console.log(`Received ${data} from main process`);
+        //     document.getElementById('mem').innerHTML = data.toFixed(2);
+        // });
+
+        // window.api.receive("total-mem", (data) => {
+        //     //console.log(`Received ${data} from main process`);
+        //     document.getElementById('total-mem').innerHTML = data.toFixed(2);
+        // });
+
+      ipcRenderer.on('cpu', (event, data) => {
+        //console.log('cpu % ' + data);
+        document.getElementById('cpu').innerHTML = data.toFixed(2);
+      });
+      ipcRenderer.on('mem', (event, data) => {
+        //console.log('mem % ' + data);
+        document.getElementById('mem').innerHTML = data.toFixed(2);
+      });
+      ipcRenderer.on('total-mem', (event, data) => {
+        //console.log('total mem GB ' + data);
+        document.getElementById('total-mem').innerHTML = data.toFixed(2);
+      });
+    </script>
+</body>
+
+</html>
